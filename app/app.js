@@ -95,6 +95,18 @@ MongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port  
         http.createServer(app).listen(config.port, function(){
             console.log('Express server listening on port ' + config.port);
         });
+		
+		/* start chrome with the server */
+		var exec = require('child_process').exec, child;
+		
+		child = exec('"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe" --user-data-dir=C:\\tvlauncher\\windows-tv-launcher\\tmp --kiosk http://localhost:3000/',
+		  function (error, stdout, stderr) {
+			console.log('stdout: ' + stdout);
+			console.log('stderr: ' + stderr);
+			if (error !== null) {
+			  console.log('exec error: ' + error);
+			}
+		});
     }
 });
 
