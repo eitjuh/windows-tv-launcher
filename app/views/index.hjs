@@ -5,11 +5,25 @@
 	<link rel="stylesheet/less" type="text/css" href="styles/styles.less" />
   </head>
   <body>
+
+	<ul id="scene">
+		<li class="layer" data-depth="0.00"><h1>Layer 1</h1></li>
+		<li class="layer" data-depth="0.10">
+			<div class="background"></div>
+		</li>
+		<li class="layer" data-depth="0.20"><h1>Layer 2</h1></li>
+		<li class="layer" data-depth="0.40"><h1>Layer 3</h1></li>
+		<li class="layer" data-depth="0.60"><h1>Layer 4</h1></li>
+		<li class="layer" data-depth="0.80"><h1>Layer 5</h1></li>
+		<li class="layer" data-depth="0"><div class="icon">Test</div><div class="icon">Test</div><div class="icon">Test</div></li>
+	</ul>
+	
     <h1>{{ title }}</h1>
     <p>Welcome to  {{ title }}</p>
 	<form method="post" action="/">
 		<input type="submit" value="open-ie"/>
 	</form>
+	
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 	<script src="js/libs/less-1.7.3.min.js"></script>
 	<script src="js/libs/jquery-2.1.1.min.js"></script>
