@@ -9,6 +9,7 @@ For Windows
 1. Install Git Bash
 2. Install NodeJS
 3. Install MongoDB
+4. Install NirCmd (CLI tool to activate windows)
 
 =Initial setting up=
 1. Checkout repository
