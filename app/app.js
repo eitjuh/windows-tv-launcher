@@ -28,31 +28,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
-app.post('/', function(req, res) {
-
-	var execFile = require('child_process').execFile, child;
-	var filePath = "../../iexplore.exe";
-
-	child = execFile(filePath, function(error,stdout,stderr) {
-		if (error) {
-			console.log(error.stack); 
-			console.log('Error code: '+ error.code); 
-			console.log('Signal received: '+ error.signal);
-		}
-		console.log('Child Process stdout: '+ stdout);
-		console.log('Child Process stderr: '+ stderr);
-	}); 
-	 
-	child.on('exit', function (code) { 
-		console.log('Child process exited with exit code '+ code);
-	});
-
-  res.send(200);
-
-  // sending a response does not pause the function
-  foo();
-});
-
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -97,16 +72,16 @@ MongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port  
         });
 		
 		/* start chrome with the server */
-		var exec = require('child_process').exec, child;
-		
-		child = exec('"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe" --user-data-dir=C:\\tvlauncher\\windows-tv-launcher\\tmp --kiosk http://localhost:3000/',
-		  function (error, stdout, stderr) {
-			console.log('stdout: ' + stdout);
-			console.log('stderr: ' + stderr);
-			if (error !== null) {
-			  console.log('exec error: ' + error);
-			}
-		});
+		//var exec = require('child_process').exec, child;
+		//
+		//child = exec('"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe" --user-data-dir=C:\\tvlauncher\\windows-tv-launcher\\tmp --kiosk http://localhost:3000/',
+		//  function (error, stdout, stderr) {
+		//	console.log('stdout: ' + stdout);
+		//	console.log('stderr: ' + stderr);
+		//	if (error !== null) {
+		//	  console.log('exec error: ' + error);
+		//	}
+		//});
     }
 });
 

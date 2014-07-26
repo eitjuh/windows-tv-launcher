@@ -1,3 +1,4 @@
+//DEFAULTS
 //CSS RESET RELOADED//
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline}:focus{outline:0}body{line-height:1;color:black;background:white}ol,ul{list-style:none}table{border-collapse:separate;border-spacing:0}caption,th,td{text-align:left;font-weight:normal}blockquote:before,blockquote:after,q:before,q:after{content:""}blockquote,q{quotes:"" ""}
 //END CSS RESET RELOADED//
@@ -9,8 +10,6 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
   display: table;
   clear: both;
 }
-
-
 html,
 button,
 input,
@@ -18,57 +17,76 @@ select,
 textarea {
   font-family: sans-serif;
 }
-
-body {
-  margin: 0;
-}
-
+//END DEFAULTS
 html {
-  font-family: "Roboto Slab", sans-serif;
-  font-size: 12px;
-}
+	font-family: "Roboto Slab", sans-serif;
+	font-size: 12px;
+	body {
+		margin: 0;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
+		line-height: 1.4em;
+		background-color: black;
+		text-align: center;
+		color: white;
+	}
+	#scene {
+		min-height: 460px;
+		position: relative;
+		overflow: hidden;
+		display: block;
+		height: 100%;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		.layer {
+			display: block;
+			height: 100%;
+			width: 100%;
+			padding: 0;
+			margin: 0;
+			.background {
+				background: url(/img/bg/railay-through-sunset-1920x1080-wallpaper-14853.jpg) no-repeat 50% 100%;
+				bottom: -5%;
+				background-size: cover;
+				position: absolute;
+				width: 110%;
+				left: -5%;
+				top: -5%;
+			}
 
-body {
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  line-height: 1.4em;
-  background-color: black;
-  text-align: center;
-  color: white;
-}
-
-.scene,
-.layer {
-  display: block;
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.scene {
-  min-height: 460px;
-  position: relative;
-  overflow: hidden;
-}
-
-.background {
-  background: url(/img/railay-through-sunset-1920x1080-wallpaper-14853.jpg) no-repeat 50% 100%;
-  bottom: 96px;
-  background-size: cover;
-  position: absolute;
-  width: 110%;
-  left: -5%;
-  top: -5%;
-}
-
-.icon {
-	float:left;
-	margin-left:50px;
-	margin-top:50px;
-	width:200px;
-	height:200px;
-	background-color:white;
-	border-radius:15px;
-	box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+			.icon {
+				cursor:pointer;
+				float:left;
+				margin-left:50px;
+				margin-top:50px;
+				width:200px;
+				height:200px;
+				background-color:rgba(255,255,255,1);
+				border-radius:35px;
+				box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3), 0px 100px 100px -25px rgba(0, 0, 0, 0.1), inset 0 1px 0px 0px rgba(255, 255, 255, 0.8);
+				background-size: 100%;
+				&.spotify {
+					background-image:url(/img/app-icons/spotify-icon.png);
+				}
+				&.xbmc {
+					background-image:url(/img/app-icons/xbmc.png);
+				}
+				&.chrome {
+					background-image:url(/img/app-icons/chrome_11_flurry_icon_by_ibnadem-d3g5ucn.png);
+				}
+				&.notepad {
+					background-image:url(/img/app-icons/GlOR3f0WizE2iy941SNwuqCvWRSfs4Z8.png);
+				}
+				&.gamecube {
+					background-image:url(/img/app-icons/gamecube_icon_by_spazchicken-d5f99vt.png);
+				}
+				.caption {
+					margin-top:220px;
+					font-size:30px;
+					text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+				}
+			}
+		}
+	}
 }
