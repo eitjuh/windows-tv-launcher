@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{ title }}</title>
+    <title>{{ pagetitle }}</title>
 	<link rel="stylesheet/less" type="text/css" href="styles/styles.less" />
 	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
   </head>
   <body>
-
 	<ul id="scene">
 		<!--<li class="layer" data-depth="0.00"><h1>Layer 1</h1></li>-->
 		<li class="layer" data-depth="0.10"><div class="background"></div></li>
 		<!--
 		<li class="layer" data-depth="0.10">
-			<h1>{{ title }}</h1>
-			<p>Welcome to  {{ title }}</p>
+			<h1>{{ pagetitle }}</h1>
+			<p>Welcome to  {{ pagetitle }}</p>
 			<form method="post" action="/">
 				<input type="submit" value="open-ie"/>
 			</form>
@@ -22,25 +21,48 @@
 		<li class="layer" data-depth="0.40"><h1>Layer 3</h1></li>
 		<li class="layer" data-depth="0.60"><h1>Layer 4</h1></li>
 		<li class="layer" data-depth="0.80"><h1>Layer 5</h1></li>-->
+		<!-- db model:
+      {
+        "launch-type": "launchExe",
+        "launch-location": "C:/Program Files (x86)/Notepad++/notepad++.exe",
+        "activation-title": "Notepad",
+        "icon-image": "/img/app-icons/GlOR3f0WizE2iy941SNwuqCvWRSfs4Z8.png",
+        "title": "Notepad ++",
+        "command": null,
+        "href": null
+      }
+		-->
 		<li class="layer" data-depth="0">
-			<div id="Chrome" class="icon chrome launch" data-launch-type="launchExe" data-launch-location="C:/Program Files (x86)/Google/Chrome/Application/chrome.exe" data-activation-title="Chrome">
+			
+			{{#applications}}
+				<div class="icon" data-launch-type="{{ launch-type }}" data-launch-location="{{ launch-location }}" data-activation-title="{{ activation-title }}" style="background-image:url({{ icon-image }});">
+					<p class="caption">{{ title }}</p>
+				</div>
+			{{/applications}}
+			<div class="icon" data-launch-type="launchExe" data-launch-location="C:/Program Files (x86)/Google/Chrome/Application/chrome.exe" data-activation-title="Chrome" style="background-image:url(/img/app-icons/chrome_11_flurry_icon_by_ibnadem-d3g5ucn.png);">
 				<p class="caption">Chrome</p>
 			</div>
-			<div id="notepad" class="icon notepad launch" data-launch-type="launchExe" data-launch-location="C:/Program Files (x86)/Notepad++/notepad++.exe" data-activation-title="Notepad">
+			<div class="icon" data-launch-type="launchExe" data-launch-location="C:/Program Files (x86)/Notepad++/notepad++.exe" data-activation-title="Notepad" style="background-image:url(/img/app-icons/GlOR3f0WizE2iy941SNwuqCvWRSfs4Z8.png);">
 				<p class="caption">Notepad ++</p>
 			</div>
-			<div id="spotify" class="icon spotify launch" data-launch-type="launchExe" data-launch-location="C:/Users/Administrator/AppData/Roaming/Spotify/spotify.exe" data-activation-title="Spotify">
+			<div  class="icon" data-launch-type="launchExe" data-launch-location="C:/Users/Administrator/AppData/Roaming/Spotify/spotify.exe" data-activation-title="Spotify" style="background-image:url(/img/app-icons/spotify-icon.png);">
 				<p class="caption">Spotify</p>
 			</div>
-			<div class="icon xbmc launch" data-launch-type="launchExe" data-launch-location="C:/Program Files (x86)/XBMC/XBMC.exe" data-activation-title="XBMC">
+			<div class="icon" data-launch-type="launchExe" data-launch-location="C:/Program Files (x86)/XBMC/XBMC.exe" data-activation-title="XBMC" style="background-image:url(/img/app-icons/xbmc.png);">
 				<p class="caption">XBMC</p>
 			</div>
-			<div class="icon gamecube launch" data-launch-type="launchCommand" data-command='dolphin /b /e "C:\tmp\Dragon Ball Z - Budokai 2.iso"' data-activation-title="Dolphin">
+			<div class="icon" data-launch-type="launchCommand" data-command='dolphin /b /e "C:\tmp\Dragon Ball Z - Budokai 2.iso"' data-activation-title="Dolphin" style="background-image:url(/img/app-icons/gamecube_icon_by_spazchicken-d5f99vt.png);">
 				<p class="caption">GameCube</p>
 			</div>
-			<a class="icon nas launch" href="quickconnect.to/eitjuh">
+			<a class="icon" data-launch-type="launchUrl" href="http://quickconnect.to/eitjuh" style="background-image:url(/img/app-icons/nexusae0_DSthumb.png);">
 				<p class="caption">Synology NAS</p>
 			</a>
+			<a class="icon" href="/add-application" style="background-image:url(/img/app-icons/add-1-icon.png);">
+				<p class="caption">Add application</p>
+			</a>
+			<div class="icon" data-launch-type="launchCommand" data-command='shutdown -s' style="background-image:url(/img/app-icons/Other-Power-Shut-Down-Metro-icon.png);">
+				<p class="caption">Shutdown</p>
+			</div>
 		</li>
 	</ul>
 	

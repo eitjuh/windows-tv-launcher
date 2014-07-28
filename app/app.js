@@ -7,9 +7,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var http = require('http');
 var MongoClient = require('mongodb');
-
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var db;
+var attachDB = function(req, res, next) {
+    req.db = db;
+    next();
+};
 
 var app = express();
 
@@ -25,8 +27,20 @@ app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
+var IndexController = require('./controllers/Index');
+var ApplicationController = require('./controllers/Application');
+
+//routes
+app.all('/', attachDB, function(req, res, next) {
+    IndexController.run(req, res, next);
+});
+app.post('/launch-app', function(req, res, next) {
+    ApplicationController.launchApp(req, res, next);
+});
+app.all('/add-application', attachDB, function(req, res, next) {
+    ApplicationController.run(req, res, next);
+});
+//end routes
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -59,29 +73,27 @@ app.use(function(err, req, res, next) {
     });
 });
 
-MongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port  + '/fastdelivery', function(err, db) {
+MongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port  + '/tv-launcher', function(err, resultDB) {
     if(err) {
         console.log('Sorry, there is no mongo db server running.');
     } else {
-        var attachDB = function(req, res, next) {
-            req.db = db;
-            next();
-        };
+        db = resultDB;
+			
         http.createServer(app).listen(config.port, function(){
             console.log('Express server listening on port ' + config.port);
         });
 		
 		/* start chrome with the server */
-		var exec = require('child_process').exec, child;
-		
-		child = exec('"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe" --user-data-dir=C:\\tvlauncher\\windows-tv-launcher\\tmp --kiosk http://localhost:3000/',
-		  function (error, stdout, stderr) {
-			console.log('stdout: ' + stdout);
-			console.log('stderr: ' + stderr);
-			if (error !== null) {
-			  console.log('exec error: ' + error);
-			}
-		});
+		//var exec = require('child_process').exec, child;
+		//
+		//child = exec('"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe" --user-data-dir=C:\\tvlauncher\\windows-tv-launcher\\tmp --kiosk http://localhost:3000/',
+		//  function (error, stdout, stderr) {
+		//	console.log('stdout: ' + stdout);
+		//	console.log('stderr: ' + stderr);
+		//	if (error !== null) {
+		//	  console.log('exec error: ' + error);
+		//	}
+		//});
     }
 });
 
