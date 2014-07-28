@@ -38,6 +38,9 @@
 			<div class="icon gamecube launch" data-launch-type="launchCommand" data-command='dolphin /b /e "C:\tmp\Dragon Ball Z - Budokai 2.iso"' data-activation-title="Dolphin">
 				<p class="caption">GameCube</p>
 			</div>
+			<a class="icon nas launch" href="quickconnect.to/eitjuh">
+				<p class="caption">Synology NAS</p>
+			</a>
 		</li>
 	</ul>
 	
