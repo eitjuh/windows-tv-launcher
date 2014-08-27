@@ -1,6 +1,7 @@
 var config = require('./config')();
 var express = require('express');
 var path = require('path');
+var fs = require('fs-extra');
 var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -14,6 +15,7 @@ var attachDB = function(req, res, next) {
 };
 
 var app = express();
+app.use(express.static(path.join(__dirname, 'public')));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,7 +27,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
 
 var IndexController = require('./controllers/Index');
 var ApplicationController = require('./controllers/Application');
@@ -39,6 +40,9 @@ app.post('/launch-app', function(req, res, next) {
 });
 app.all('/add-application', attachDB, function(req, res, next) {
     ApplicationController.run(req, res, next);
+});
+app.post('/add-application-submit', attachDB, function(req, res, next) {
+    ApplicationController.saveApplication(req, res, next);
 });
 //end routes
 
@@ -84,16 +88,16 @@ MongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port  
         });
 		
 		/* start chrome with the server */
-		//var exec = require('child_process').exec, child;
-		//
-		//child = exec('"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe" --user-data-dir=C:\\tvlauncher\\windows-tv-launcher\\tmp --kiosk http://localhost:3000/',
-		//  function (error, stdout, stderr) {
-		//	console.log('stdout: ' + stdout);
-		//	console.log('stderr: ' + stderr);
-		//	if (error !== null) {
-		//	  console.log('exec error: ' + error);
-		//	}
-		//});
+		var exec = require('child_process').exec, child;
+		
+		child = exec('"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe" --user-data-dir=C:\\tvlauncher\\windows-tv-launcher\\tmp --kiosk http://localhost:3000/',
+		  function (error, stdout, stderr) {
+			console.log('stdout: ' + stdout);
+			console.log('stderr: ' + stderr);
+			if (error !== null) {
+			  console.log('exec error: ' + error);
+			}
+		});
     }
 });
 

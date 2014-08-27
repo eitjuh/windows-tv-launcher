@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ pagetitle }}</title>
+	<link rel="stylesheet/less" type="text/css" href="styles/styles.less" />
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+	<ul id="scene">
+		<li class="layer" data-depth="0.10"><div class="background"></div></li>
+		<li class="layer" data-depth="0">
+			<style type="text/css">
+				
+			</style>
+			<form action="/add-application-submit" method="post" enctype="multipart/form-data">
+				<h1>Add Application</h1>
+				<div class="field">
+					<label for="title">Title</label>
+					<input id="title" name="title" type="text" placeholder="title" />
+				</div>
+				<div class="field">
+					<label for="activation-title">Activation title</label>
+					<input id="activation-title" name="activation-title" type="text" placeholder="activation title" />
+				</div>
+				<div class="field">
+					<label for="icon-image">Icon</label>
+					<input id="icon-image" name="icon-image" type="file" placeholder="icon" />
+				</div>
+				<div class="field">
+					<label for="launch-type">Launch type</label>
+					<select name="launch-type" id="launch-type">
+						<option value="launchExe">Launch *.exe</option>
+						<option value="launchCommand">Launch command</option>
+						<option value="launchUrl">Launch URL</option>
+					</select>
+				</div>
+				<div class="field showOnLaunchExe">
+					<label for="launch-location">Launch location</label>
+					<input id="launch-location" name="launch-location" type="text" placeholder="exe path" />
+				</div>
+				<div class="field showOnLaunchCommand">
+					<label for="command">Command</label>
+					<input id="command" name="command" type="text" placeholder="command" />
+				</div>
+				<div class="field showOnLaunchUrl">
+					<label for="href">Url</label>
+					<input id="href" name="href" type="text" placeholder="Url" />
+				</div>
+				<div class="field">
+					<input type="submit" value="Submit" />
+				</div>
+			</form>
+		</li>
+	</ul>
+	
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+	<script src="js/libs/less-1.7.3.min.js"></script>
+	<script src="js/libs/jquery-2.1.1.min.js"></script>
+	<script src="js/libs/jquery.parallax.js"></script>
+	<script src="js/bootstrap.js"></script>
+	
+			<script type="text/javascript">
+				jQuery(document).ready(function($){
+				
+					var Form = (function(){
+						return {
+							update: function(type){
+								$('.showOnLaunchExe').addClass('hide');
+								$('.showOnLaunchCommand').addClass('hide');
+								$('.showOnLaunchUrl').addClass('hide');
+								$('.showOn' + type.replace('l', 'L')).removeClass('hide');
+							}
+						}
+					})();
+				
+					$('#launch-type').change(function(){
+						Form.update($('#launch-type').val());
+					});
+					Form.update("launchExe");
+				});
+			</script>
+  </body>
+</html>
