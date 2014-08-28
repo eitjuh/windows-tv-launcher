@@ -4,6 +4,33 @@
     <title>{{ pagetitle }}</title>
 	<link rel="stylesheet/less" type="text/css" href="styles/styles.less" />
 	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+	
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+	<script src="js/libs/less-1.7.3.min.js"></script>
+	<script src="js/libs/jquery-2.1.1.min.js"></script>
+	<script src="js/libs/jquery.parallax.js"></script>
+	<script src="js/bootstrap.js"></script>
+	
+	<script type="text/javascript">
+		jQuery(document).ready(function($){
+		
+			var Form = (function(){
+				return {
+					update: function(type){
+						$('.showOnLaunchExe').addClass('hide');
+						$('.showOnLaunchCommand').addClass('hide');
+						$('.showOnLaunchUrl').addClass('hide');
+						$('.showOn' + type.replace('l', 'L')).removeClass('hide');
+					}
+				}
+			})();
+		
+			$('#launch-type').change(function(){
+				Form.update($('#launch-type').val());
+			});
+			Form.update("launchExe");
+		});
+	</script>
   </head>
   <body>
 	<ul id="scene">
@@ -52,32 +79,5 @@
 			</form>
 		</li>
 	</ul>
-	
-    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-	<script src="js/libs/less-1.7.3.min.js"></script>
-	<script src="js/libs/jquery-2.1.1.min.js"></script>
-	<script src="js/libs/jquery.parallax.js"></script>
-	<script src="js/bootstrap.js"></script>
-	
-			<script type="text/javascript">
-				jQuery(document).ready(function($){
-				
-					var Form = (function(){
-						return {
-							update: function(type){
-								$('.showOnLaunchExe').addClass('hide');
-								$('.showOnLaunchCommand').addClass('hide');
-								$('.showOnLaunchUrl').addClass('hide');
-								$('.showOn' + type.replace('l', 'L')).removeClass('hide');
-							}
-						}
-					})();
-				
-					$('#launch-type').change(function(){
-						Form.update($('#launch-type').val());
-					});
-					Form.update("launchExe");
-				});
-			</script>
   </body>
 </html>

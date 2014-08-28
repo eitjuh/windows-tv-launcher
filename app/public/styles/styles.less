@@ -17,6 +17,31 @@ select,
 textarea {
   font-family: sans-serif;
 }
+
+@-webkit-keyframes spaceboots {
+	0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+	10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+	70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+	80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+	100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
+.shake {
+	-webkit-animation-name: spaceboots;
+	-webkit-animation-duration: 0.8s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+.shake {
+	display:inline-block
+}
+
 //END DEFAULTS
 html {
 	font-family: "Roboto Slab", sans-serif;
@@ -74,6 +99,14 @@ html {
 					margin-top:220px;
 					font-size:30px;
 					text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+				}
+				.delete-app-icon {
+					position: absolute;
+					top: 0;
+					right: 0;
+					background-color: white;
+					border-radius: 48px;
+					border: 1px solid red;
 				}
 			}
 		}
