@@ -2,6 +2,7 @@ var Busboy = require('busboy');
 var path = require('path');
 var os = require('os');
 var fs = require('fs-extra');
+var ObjectID = require('mongodb').ObjectID;
 
 module.exports = {
 	launchApp: function(req, res, next) {
@@ -78,5 +79,22 @@ module.exports = {
 		});
 		req.pipe(busboy);
 	  }	
+	},
+	updateApplicationOrder: function(req, res, next) {
+		if (req.method === 'POST') {
+			for (var key in req.body) {
+				var db = req.db; 
+				
+				db.collection("applications").update({_id: new ObjectID(key)}, { $set: {"order": parseFloat(req.body[key])}}, {safe:true}, function(err, result) {
+					if (err) {
+						console.log('Error updating application: ' + err);
+						res.send({'error':'An error has occurred'});
+					} else {
+						console.log('' + result + ' document(s) updated');
+						res.send(key);
+					}
+				});
+			}
+		}
 	}
 };

@@ -45,19 +45,19 @@
 			
 			{{#applications}}
 				{{#href}}
-				<a class="icon" data-launch-type="{{ launch-type }}" href="{{ href }}" style="background-image:url({{ icon-image }});">
-					<p class="caption">{{ title }}</p>
-				</a>
+					<a class="icon" data-launch-type="{{ launch-type }}" href="{{ href }}" style="background-image:url({{ icon-image }});" data-id="{{ _id }}">
+						<p class="caption">{{ title }}</p>
+					</a>
 				{{/href}}
 				
 				{{#launch-location}}
-				<div class="icon" data-launch-type="{{ launch-type }}" data-launch-location="{{ launch-location }}" data-activation-title="{{ activation-title }}" style="background-image:url({{ icon-image }});">
-					<p class="caption">{{ title }}</p>
-				</div>
+					<div class="icon" data-launch-type="{{ launch-type }}" data-launch-location="{{ launch-location }}" data-activation-title="{{ activation-title }}" style="background-image:url({{ icon-image }});" data-id="{{ _id }}">
+						<p class="caption">{{ title }}</p>
+					</div>
 				{{/launch-location}}
 				
 				{{#command}}
-					<div class="icon" data-launch-type="{{ launch-type }}" data-command='{{ command }}' data-activation-title="{{ activation-title }}" style="background-image:url({{ icon-image }});">
+					<div class="icon" data-launch-type="{{ launch-type }}" data-command='{{ command }}' data-activation-title="{{ activation-title }}" style="background-image:url({{ icon-image }});" data-id="{{ _id }}">
 						<p class="caption">{{ title }}</p>
 					</div>
 				{{/command}}

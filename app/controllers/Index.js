@@ -10,7 +10,7 @@ module.exports = {
 	
 		var db = req.db;
 	
-		db.collection("applications").find({}).toArray(function(err, result) {
+		db.collection("applications").find({}).sort( { order: 1 } ).toArray(function(err, result) {
 			if (err) {
 				throw err;
 			} else {

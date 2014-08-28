@@ -1,9 +1,5 @@
 jQuery(document).ready(function($){
 
-	if($(".sortable").length){
-		$(".sortable").sortable();
-	}
-
 	var Scene = (function() {
 
 		$('#scene').parallax();
@@ -22,6 +18,25 @@ jQuery(document).ready(function($){
 		
 	var Icon = (function() {
 	
+	
+		// on dragging
+		if($(".sortable").length){
+			$(".sortable").sortable({
+				stop: function(event, ui) {
+					var i, j = 1, options = {};
+					for(i = 0; i < $(".icon").length; i++){
+						$($(".icon")[i]).attr('data-order', j);
+						options[$($(".icon")[i]).attr('data-id')] = j;
+						j++;
+					}
+					$.ajax({
+						type: "POST",
+						url: "/update-app-order",
+						data: options
+					});
+				}
+			});
+		}
 		
 		// on click
 		$('.icon').on('click', function() {
@@ -37,7 +52,7 @@ jQuery(document).ready(function($){
 				timeoutId = setTimeout(function(){
 					Icon.addShake(clickedIcon);
 					return false;
-				}, 1000);
+				}, 500);
 			}).bind('mouseup', function() {
 				clearTimeout(timeoutId);
 				setTimeout(function(){

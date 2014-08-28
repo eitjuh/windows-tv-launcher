@@ -44,6 +44,9 @@ app.all('/add-application', attachDB, function(req, res, next) {
 app.post('/add-application-submit', attachDB, function(req, res, next) {
     ApplicationController.saveApplication(req, res, next);
 });
+app.post('/update-app-order', attachDB, function(req, res, next) {
+    ApplicationController.updateApplicationOrder(req, res, next);
+});
 //end routes
 
 /// catch 404 and forward to error handler
@@ -88,16 +91,16 @@ MongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port  
         });
 		
 		/* start chrome with the server */
-		var exec = require('child_process').exec, child;
-		
-		child = exec('"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe" --user-data-dir=C:\\tvlauncher\\windows-tv-launcher\\tmp --kiosk http://localhost:3000/',
-		  function (error, stdout, stderr) {
-			console.log('stdout: ' + stdout);
-			console.log('stderr: ' + stderr);
-			if (error !== null) {
-			  console.log('exec error: ' + error);
-			}
-		});
+		//var exec = require('child_process').exec, child;
+		//
+		//child = exec('"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe" --user-data-dir=C:\\tvlauncher\\windows-tv-launcher\\tmp --kiosk http://localhost:3000/',
+		//  function (error, stdout, stderr) {
+		//	console.log('stdout: ' + stdout);
+		//	console.log('stderr: ' + stderr);
+		//	if (error !== null) {
+		//	  console.log('exec error: ' + error);
+		//	}
+		//});
     }
 });
 
