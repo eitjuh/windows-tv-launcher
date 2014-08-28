@@ -18,6 +18,21 @@ jQuery(document).ready(function($){
 		
 	var Icon = (function() {
 	
+		// on remove click
+		$(document).on('click', '.delete-app-icon', function() {
+			var appIconToDelete = $(this).closest('.icon');
+			var appIdToDelete = appIconToDelete.attr('data-id');
+			var titleToDelete = $('.caption', appIconToDelete).text();
+			var confirmDelete = confirm("Are you sure you want to remove " + titleToDelete + "!?");
+			if(confirmDelete){
+				$.ajax({
+					type: "POST",
+					url: "/remove-app",
+					data: {"removeId" : appIdToDelete}
+				});
+				appIconToDelete.animate({'zoom': 0}, 1000);
+			}
+		});
 	
 		// on dragging
 		if($(".sortable").length){
@@ -82,7 +97,7 @@ jQuery(document).ready(function($){
 					options.activationTitle = $(element).attr('data-activation-title');
 				} else if($(element).attr('data-launch-type') == "launchUrl") {
 					options.type = $(element).attr('data-launch-type');
-					options.href = $(element).attr('href');
+					options.href = $(element).attr('data-href');
 					options.activationTitle = "Chrome";
 				}
 				if(!$(element).hasClass("disabled")) {

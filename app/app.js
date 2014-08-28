@@ -47,6 +47,9 @@ app.post('/add-application-submit', attachDB, function(req, res, next) {
 app.post('/update-app-order', attachDB, function(req, res, next) {
     ApplicationController.updateApplicationOrder(req, res, next);
 });
+app.post('/remove-app', attachDB, function(req, res, next) {
+    ApplicationController.removeApplication(req, res, next);
+});
 //end routes
 
 /// catch 404 and forward to error handler

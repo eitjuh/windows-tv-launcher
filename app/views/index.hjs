@@ -45,7 +45,7 @@
 			
 			{{#applications}}
 				{{#href}}
-					<a class="icon" data-launch-type="{{ launch-type }}" href="{{ href }}" style="background-image:url({{ icon-image }});" data-id="{{ _id }}">
+					<a class="icon" data-launch-type="{{ launch-type }}" href="#" data-href="{{ href }}" style="background-image:url({{ icon-image }});" data-id="{{ _id }}">
 						<p class="caption">{{ title }}</p>
 					</a>
 				{{/href}}
@@ -62,6 +62,11 @@
 					</div>
 				{{/command}}
 			{{/applications}}
+			<div class="icon" data-launch-type="launchFolder" style="background-image:url(/img/app-icons/folder-icon-512x512.png);">
+				<div class="folder-icon" style="background-image:url(/img/app-icons/gamecube_icon_by_spazchicken-d5f99vt.png);"></div>
+				<p class="caption">GameCube</p>
+			</div>
+			
 		</li>
 	</ul>
   </body>

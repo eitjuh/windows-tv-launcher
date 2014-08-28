@@ -32,8 +32,11 @@ module.exports = {
 				console.log(stdout);
 			});
 		} else if(req.body.type == "launchUrl") {
-			exec("\"" + "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe" + "\" \"" + req.body.href + "\"", function(error,stdout,stderr){
-			});
+			if(req.body.href.match('http')) {
+				exec("\"" + "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe" + "\" \"" + req.body.href + "\"", function(error,stdout,stderr){});
+			} else {
+				exec("\"" + "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe" + "\" \"http://localhost:3000" + req.body.href + "\"", function(error,stdout,stderr){});
+			}
 		}
 			
 		res.send(200);
@@ -95,6 +98,12 @@ module.exports = {
 					}
 				});
 			}
+		}
+	},
+	removeApplication: function(req, res, next) {
+		if (req.method === 'POST') {
+			var db = req.db; 
+			db.collection("applications").remove({_id: new ObjectID(req.body.removeId)});
 		}
 	}
 };
