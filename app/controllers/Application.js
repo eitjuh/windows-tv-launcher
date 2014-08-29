@@ -103,7 +103,9 @@ module.exports = {
 	removeApplication: function(req, res, next) {
 		if (req.method === 'POST') {
 			var db = req.db; 
-			db.collection("applications").remove({_id: new ObjectID(req.body.removeId)});
+			db.collection("applications").remove({_id: new ObjectID(req.body.removeId)}, function(err, result) {
+				console.log(err);
+			});
 		}
 	}
 };

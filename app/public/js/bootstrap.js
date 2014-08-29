@@ -30,7 +30,9 @@ jQuery(document).ready(function($){
 					url: "/remove-app",
 					data: {"removeId" : appIdToDelete}
 				});
-				appIconToDelete.animate({'zoom': 0}, 1000);
+				appIconToDelete.animate({'zoom': 0}, 1000, function(){
+					appIconToDelete.remove();
+				});
 			}
 		});
 	
