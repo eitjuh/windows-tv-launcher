@@ -30,6 +30,7 @@ app.use(require('less-middleware')(path.join(__dirname, 'public')));
 
 var IndexController = require('./controllers/Index');
 var ApplicationController = require('./controllers/Application');
+var SmokingController = require('./controllers/Smoking');
 
 //routes
 app.all('/', attachDB, function(req, res, next) {
@@ -49,6 +50,9 @@ app.post('/update-app-order', attachDB, function(req, res, next) {
 });
 app.post('/remove-app', attachDB, function(req, res, next) {
     ApplicationController.removeApplication(req, res, next);
+});
+app.all('/stop-smoking', attachDB, function(req, res, next) {
+	SmokingController.run(req, res, next);
 });
 //end routes
 
