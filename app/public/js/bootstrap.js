@@ -1,5 +1,22 @@
 jQuery(document).ready(function($){
 
+	var Weather = (function() {
+	
+		navigator.geolocation.getCurrentPosition(function(data){
+			$.ajax({
+				url : "http://api.wunderground.com/api/d07f77703958f46f/geolookup/conditions/q/" + data.coords.latitude + "," + data.coords.longitude + ".json",
+				dataType : "jsonp",
+				success : function(parsed_json) {
+					var location = parsed_json['location']['city'];
+					var temp_c = parsed_json['current_observation']['temp_c'];
+					alert("Current temperature in " + location + " is: " + temp_c);
+				}
+			});
+		});
+		return {
+		}
+	})();
+
 	var Scene = (function() {
 
 		$('#scene').parallax();
